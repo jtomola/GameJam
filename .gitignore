@@ -2,5 +2,5 @@ Library/
 Temp/
 obj/
 *.suo
-*.sln
 *.csproj
+*.sln
