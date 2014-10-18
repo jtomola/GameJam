@@ -13,7 +13,8 @@ public class PlayerCollisions : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+
+        this.GetComponent<TextMesh>().text = "Health: " + Health.ToString();
         
 	}
 
@@ -27,8 +28,6 @@ public class PlayerCollisions : MonoBehaviour {
         if (collision.gameObject.tag == "SoulTag")
         {
             Health--;
-            Debug.Log("Collision code");
-            this.GetComponent<TextMesh>().text = "Health: " + Health.ToString();
         }
     }
 }
