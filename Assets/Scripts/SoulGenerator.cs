@@ -6,13 +6,15 @@ public class SoulGenerator : MonoBehaviour
 
     public GameObject Soul_Prefab;
     public int numSouls;
+    public float xLimit;
+    public float yLimit;
 
 	// Use this for initialization
 	void Start () {
 
         for (int i = 0; i < numSouls; i++)
         {
-            Vector3 vect = new Vector3(Random.Range(-8.0f, 8.0f), Random.Range(-4.0f, 4.0f), 0.0f);
+            Vector3 vect = new Vector3(Random.Range(-xLimit, xLimit), Random.Range(-yLimit, yLimit), 0.0f);
             Quaternion q = new Quaternion();
 
             Instantiate(Soul_Prefab, vect, q);

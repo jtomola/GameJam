@@ -19,10 +19,12 @@ public class PlayerMovement : MonoBehaviour {
         float yAxisRight = Input.GetAxis("VerticalRight1");
 
         Vector2 moveVect = new Vector2(xAxisLeft * Time.deltaTime * speed, yAxisLeft * Time.deltaTime * speed);
-        this.transform.Translate(moveVect, null);
+        //this.transform.Translate(moveVect, null);
+
+        this.rigidbody2D.AddForce(moveVect, ForceMode2D.Impulse);
 
         if (Mathf.Abs(xAxisRight) > 0.5f || Mathf.Abs(yAxisRight) > 0.5f)
-            transform.eulerAngles = new Vector3( 0, 0, -1.0f * Mathf.Atan2( yAxisRight, xAxisRight) * 180 / Mathf.PI  - 90.0f);
+            transform.eulerAngles = new Vector3(0, 0, -1.0f * Mathf.Atan2(yAxisRight, xAxisRight) * 180 / Mathf.PI - 90.0f);
         //this.transform.rotation = Quaternion.LookRotation(lookVect);
 
         //float angle = Mathf.Atan2(Mathf.Abs(yAxisRight), Mathf.Abs(xAxisRight)) * Mathf.Rad2Deg;
