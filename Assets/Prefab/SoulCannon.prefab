@@ -293,6 +293,7 @@ MonoBehaviour:
   Barrel: {fileID: 400000}
   fireRateOffset: 0
   fireRate: 3
+  ejectionForce: 5
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -331,7 +332,7 @@ WheelJoint2D:
     m_DampingRatio: .699999988
     m_Frequency: 2
     m_Angle: 90
-  m_UseMotor: 0
+  m_UseMotor: 1
   m_Motor:
     m_MotorSpeed: 0
     m_MaximumMotorForce: 10000

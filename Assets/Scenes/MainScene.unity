@@ -499,6 +499,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: eccc807e43dc46a44a9f878e15e8916c, type: 2}
+      propertyPath: playerInput
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eccc807e43dc46a44a9f878e15e8916c, type: 2}
   m_RootGameObject: {fileID: 1843756012}
@@ -1692,6 +1696,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: eccc807e43dc46a44a9f878e15e8916c, type: 2}
+      propertyPath: playerInput
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eccc807e43dc46a44a9f878e15e8916c, type: 2}
   m_RootGameObject: {fileID: 425448975}
@@ -1935,6 +1943,10 @@ Prefab:
     - target: {fileID: 400000, guid: eccc807e43dc46a44a9f878e15e8916c, type: 2}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: eccc807e43dc46a44a9f878e15e8916c, type: 2}
+      propertyPath: playerInput
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eccc807e43dc46a44a9f878e15e8916c, type: 2}
@@ -3024,6 +3036,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: eccc807e43dc46a44a9f878e15e8916c, type: 2}
+      propertyPath: playerInput
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eccc807e43dc46a44a9f878e15e8916c, type: 2}
   m_RootGameObject: {fileID: 931268974}
@@ -3524,6 +3540,7 @@ MonoBehaviour:
   Barrel: {fileID: 366773103}
   fireRateOffset: 0
   fireRate: 3
+  ejectionForce: 5
 --- !u!235 &1552820181
 WheelJoint2D:
   m_ObjectHideFlags: 0
@@ -4389,6 +4406,7 @@ MonoBehaviour:
   Barrel: {fileID: 1305176773}
   fireRateOffset: 1.5
   fireRate: 3
+  ejectionForce: 5
 --- !u!235 &1895918738
 WheelJoint2D:
   m_ObjectHideFlags: 0
@@ -4406,7 +4424,7 @@ WheelJoint2D:
     m_DampingRatio: .699999988
     m_Frequency: 2
     m_Angle: 90
-  m_UseMotor: 0
+  m_UseMotor: 1
   m_Motor:
     m_MotorSpeed: 0
     m_MaximumMotorForce: 10000
