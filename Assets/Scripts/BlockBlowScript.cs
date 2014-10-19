@@ -10,7 +10,24 @@ public class BlockBlowScript : MonoBehaviour {
     private float shootDelay;
     private float shutdownDelay;
     private int count;
+    public float ejectionForce;
 	// Use this for initialization
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("Block Collision Enter");
+        GameObject collider = collision.gameObject;
+        if (collider.CompareTag("Player"))
+        {
+            Debug.Log("Inside collider if");
+            Vector2 dirVector = collider.transform.position - this.transform.position;
+            dirVector.Normalize();
+            Vector2 force = dirVector * ejectionForce;
+            collider.rigidbody2D.AddForce(force, ForceMode2D.Impulse);
+        }
+
+    }
+
 	void Start () {
 
         shootDelay = Random.Range(5.0f, 12.0f);

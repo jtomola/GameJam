@@ -293,7 +293,7 @@ MonoBehaviour:
   Barrel: {fileID: 400000}
   fireRateOffset: 1.5
   fireRate: 3
-  ejectionForce: 5
+  ejectionForce: 10
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -57,8 +57,9 @@ public class PlayerMovement : MonoBehaviour {
     {
         GameObject obj = coll.collider.gameObject;
 
-        if (obj.CompareTag("Cannon"))
+        if (obj.CompareTag("Cannon") || obj.CompareTag("AnchoredBlock"))
         {
+            Debug.Log("Inside collider FOR PLAYER");
             this.disabled = true;
             BlowScript blow = this.GetComponentInChildren<BlowScript>();
             Invoke("Activate", delay);
@@ -67,6 +68,7 @@ public class PlayerMovement : MonoBehaviour {
             blow.delayActive = this.delay;
             blow.Disable();
         }
+
     }
 	
 	// Update is called once per frame

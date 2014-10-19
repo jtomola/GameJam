@@ -26,9 +26,11 @@ public class BlowScript : MonoBehaviour {
 
         if (obj.CompareTag("SoulTag") == true && this.isFiring)
         {
-            Vector2 diffPos = obj.transform.position - this.transform.position;
-            diffPos.Normalize();
-            Vector2 force = diffPos * this.maxForce;
+            //Vector2 diffPos = obj.transform.position - this.transform.position;
+            //diffPos.Normalize();
+            Vector3 localY = new Vector3(0, 1, 0);
+            localY = this.transform.localToWorldMatrix * localY;
+            Vector2 force =  localY * this.maxForce;
             obj.rigidbody2D.AddForce(force, ForceMode2D.Impulse);
         }
         if (obj.CompareTag("Player") == true && this.isFiring)
