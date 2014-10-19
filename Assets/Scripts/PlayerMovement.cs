@@ -8,7 +8,9 @@ public class PlayerMovement : MonoBehaviour {
     private string xLeftString; 
     private string yLeftString; 
     private string xRightString; 
-    private string yRightString; 
+    private string yRightString;
+    public bool disabled;
+    public float delay;
         
         // Use this for initialization
 	void Start () {
@@ -43,10 +45,34 @@ public class PlayerMovement : MonoBehaviour {
 
                 break;
         }
+        disabled = false;
 	}
+
+    void Activate()
+    {
+        this.disabled = false;
+    }
+
+    void OnCollisionEnter2D(Collision2D coll)
+    {
+        GameObject obj = coll.collider.gameObject;
+
+        if (obj.CompareTag("Cannon"))
+        {
+            this.disabled = true;
+            BlowScript blow = this.GetComponentInChildren<BlowScript>();
+            Invoke("Activate", delay);
+
+
+            blow.delayActive = this.delay;
+            blow.Disable();
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () {
+        if (disabled)
+            return;
         float xAxisLeft = Input.GetAxis(xLeftString);	
         float yAxisLeft = Input.GetAxis(yLeftString);	
         //float xAxisLeft = Input.GetAxis("HorizontalRight1");	

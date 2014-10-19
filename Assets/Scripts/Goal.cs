@@ -5,25 +5,12 @@ public class Goal : MonoBehaviour {
 
     public GameObject TopClamp;
     public GameObject BotClamp;
+    public GameObject Score;
+    private GUIScore guiScore;
     public bool Active;
     public float Speed;
-    public int direction;
+    public float direction;
     
-   // void OnTriggerStay2D(Collider2D collision)
-   // {
-   //     GameObject obj = collision.gameObject;
-   //     
-   //     if (obj.CompareTag("SoulTag"))
-   //     {
-   //         Debug.Log("Destroying");
-   //         Object.Destroy(obj, 0.0f);
-   //     }
-   //     else if (obj.CompareTag("Wall"))
-   //     {
-   //         Debug.Log("Wall collide");
-   //         direction = -direction;
-   //     }
-   // }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -33,6 +20,7 @@ public class Goal : MonoBehaviour {
         {
             Debug.Log("Destroying");
             Object.Destroy(obj, 0.0f);
+            guiScore.score += 10;
             return;
         }
         
@@ -40,6 +28,7 @@ public class Goal : MonoBehaviour {
     
 	// Use this for initialization
 	void Start () {
+        this.guiScore = Score.GetComponent<GUIScore>();
 
 	}
 	
@@ -54,12 +43,12 @@ public class Goal : MonoBehaviour {
                 Debug.Log("First If Blocked: ");
                 Debug.Log("My Y = " + transform.position.y);
                 Debug.Log("TopClamp y is: " + (transform.position.y - 5));
-                direction = -direction;
+                direction = -1.0f * Mathf.Abs(direction);
             }
             if ((transform.position.y - transform.localScale.y * .5f) <= BotClamp.transform.position.y)
             {
                 Debug.Log("Second If Blocked");
-                direction = -direction;
+                direction = Mathf.Abs(direction);
             }
             
             //Debug.Log("Old position = " + transform.position);

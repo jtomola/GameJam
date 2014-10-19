@@ -3,6 +3,7 @@ using System.Collections;
 
 public class BlowScript : MonoBehaviour {
     public float maxForce;
+    public float maxForcePlayer;
     public int playerNumber;
     private string inputString;
     private bool isFiring;
@@ -13,7 +14,8 @@ public class BlowScript : MonoBehaviour {
     public float currMeter = 100.0f;
     private bool isRegen = false;
     private SpriteRenderer sprite;
-    
+    public float delayActive;
+    public bool disabled;
 
     void OnTriggerStay2D(Collider2D collider)
     {
@@ -25,6 +27,13 @@ public class BlowScript : MonoBehaviour {
             Vector2 diffPos = obj.transform.position - this.transform.position;
             diffPos.Normalize();
             Vector2 force = diffPos * this.maxForce;
+            obj.rigidbody2D.AddForce(force, ForceMode2D.Impulse);
+        }
+        if (obj.CompareTag("Player") == true && this.isFiring)
+        {
+            Vector2 diffPos = obj.transform.position - this.transform.position;
+            diffPos.Normalize();
+            Vector2 force = diffPos * this.maxForcePlayer;
             obj.rigidbody2D.AddForce(force, ForceMode2D.Impulse);
         }
     }
@@ -77,9 +86,27 @@ public class BlowScript : MonoBehaviour {
         this.currMeter = 1.0f * this.maxMeter;
         this.isRegen = true;
     }
+
+    public void Activate()
+    {
+        this.disabled = false;
+    }
+
+    public void Disable()
+    {
+        this.disabled = true;
+       this.isFiring = false;
+       this.sprite.enabled = false;
+       Invoke("Activate", delayActive);
+    }
 	
 	// Update is called once per frame
 	void Update () {
+        if (this.disabled)
+        {
+            return;
+        }
+
         float strength = Input.GetAxis(inputString);
         if (Mathf.Abs(strength) > 0.1f && this.isRegen)
         {
