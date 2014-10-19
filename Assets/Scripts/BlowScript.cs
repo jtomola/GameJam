@@ -16,6 +16,8 @@ public class BlowScript : MonoBehaviour {
     private SpriteRenderer sprite;
     public float delayActive;
     public bool disabled;
+    public bool playerInput;
+
 
     void OnTriggerStay2D(Collider2D collider)
     {
@@ -38,42 +40,36 @@ public class BlowScript : MonoBehaviour {
         }
     }
 
-    /*
-    void OnTriggerEnter2D(Collider2D collider)
-    {
-        GameObject obj = collider.gameObject;
-
-        if (obj.CompareTag("SoulTag") == true)
-        {
-            Vector2 diffPos = obj.transform.position - this.transform.position;
-            diffPos.Normalize();
-            Vector2 force = diffPos * this.maxForce;
-            obj.rigidbody2D.AddForce(force, ForceMode2D.Impulse);
-        }
-    }
-    */
-
 	// Use this for initialization
 	void Start () {
-        switch (playerNumber)
+
+        if (playerInput)
         {
-            case 1:
-                inputString = "Fire1";
-                break;
-            case 2:
-                inputString = "Fire2";
-                break;
-            case 3:
-                inputString = "Fire3";
-                break;
-            case 4:
-                inputString = "Fire4";
-                break;
-            default:
-                inputString = "Fire1";
-                break;
+            switch (playerNumber)
+            {
+                case 1:
+                    inputString = "Fire1";
+                    break;
+                case 2:
+                    inputString = "Fire2";
+                    break;
+                case 3:
+                    inputString = "Fire3";
+                    break;
+                case 4:
+                    inputString = "Fire4";
+                    break;
+                default:
+                    inputString = "Fire1";
+                    break;
+            }
+            this.isFiring = false;
         }
-        this.isFiring = false;
+        else
+        {
+            this.isFiring = true;
+        }
+        
         this.isRegen = true;
         this.currMeter = this.maxMeter;
 
@@ -102,7 +98,7 @@ public class BlowScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (this.disabled)
+        if (this.disabled || !playerInput)
         {
             return;
         }
