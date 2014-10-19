@@ -12,6 +12,8 @@ public class BlowScript : MonoBehaviour {
     private float maxMeter = 100.0f;
     public float currMeter = 100.0f;
     private bool isRegen = false;
+    private SpriteRenderer sprite;
+    
 
     void OnTriggerStay2D(Collider2D collider)
     {
@@ -65,11 +67,14 @@ public class BlowScript : MonoBehaviour {
         this.isFiring = false;
         this.isRegen = true;
         this.currMeter = this.maxMeter;
+
+        this.sprite = this.GetComponentInChildren<SpriteRenderer>();
+        this.sprite.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
 	}
 
     private void StartRegen()
     {
-        this.currMeter = 0.5f * this.maxMeter;
+        this.currMeter = 1.0f * this.maxMeter;
         this.isRegen = true;
     }
 	
@@ -86,9 +91,14 @@ public class BlowScript : MonoBehaviour {
                 this.isRegen = false;
                 Invoke("StartRegen", this.delay);
             }
+            else
+            {
+                this.sprite.enabled = true;
+            }
         }
         else
         {
+            this.sprite.enabled = false;
             this.isFiring = false;
             if (this.isRegen)
             {

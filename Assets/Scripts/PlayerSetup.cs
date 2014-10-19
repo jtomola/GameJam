@@ -12,6 +12,9 @@ public class PlayerSetup : MonoBehaviour {
 
         BlowScript blow = this.GetComponentInChildren<BlowScript>();
         blow.playerNumber = this.player;
+
+        Animator animator = this.GetComponentInChildren<Animator>();
+        animator.SetInteger("Player", player);
     }
 
     // Use this for initialization
