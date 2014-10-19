@@ -20,7 +20,7 @@ public class CannonFire : MonoBehaviour {
 
         if (Time.time > timer)
         {
-            Debug.Log("In loop");
+//            Debug.Log("In loop");
             Vector3 vect = new Vector3(Barrel.position.x, Barrel.position.y, 0.0f);
             Quaternion q = new Quaternion();
 
@@ -31,8 +31,8 @@ public class CannonFire : MonoBehaviour {
             Vector2 barrelPos = new Vector2(Barrel.position.x, Barrel.position.y);
             Vector2 cannonPos = new Vector2(this.transform.position.x, this.transform.position.y);
 
-            Debug.Log("BarrelPos = " + barrelPos.ToString());
-            Debug.Log("CannonPos = " + cannonPos.ToString());
+            //Debug.Log("BarrelPos = " + barrelPos.ToString());
+            //Debug.Log("CannonPos = " + cannonPos.ToString());
 
             Vector2 trajectory = cannonPos - barrelPos;
 

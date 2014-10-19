@@ -6,6 +6,7 @@ public class Goal : MonoBehaviour {
     public GameObject TopClamp;
     public GameObject BotClamp;
     public GameObject Score;
+    public GameObject explosion;
     private GUIScore guiScore;
     public bool Active;
     public float Speed;
@@ -15,11 +16,10 @@ public class Goal : MonoBehaviour {
     void OnCollisionEnter2D(Collision2D collision)
     {
         GameObject obj = collision.gameObject;
-        Debug.Log("OnCollision Called");
         if (obj.CompareTag("SoulTag"))
         {
-            Debug.Log("Destroying");
             Object.Destroy(obj, 0.0f);
+            Instantiate(explosion, obj.transform.position, new Quaternion());
             guiScore.score += 10;
             return;
         }
@@ -40,14 +40,10 @@ public class Goal : MonoBehaviour {
         {
             if ((transform.position.y + transform.localScale.y * .5f) >= TopClamp.transform.position.y)
             {
-                Debug.Log("First If Blocked: ");
-                Debug.Log("My Y = " + transform.position.y);
-                Debug.Log("TopClamp y is: " + (transform.position.y - 5));
                 direction = -1.0f * Mathf.Abs(direction);
             }
             if ((transform.position.y - transform.localScale.y * .5f) <= BotClamp.transform.position.y)
             {
-                Debug.Log("Second If Blocked");
                 direction = Mathf.Abs(direction);
             }
             
