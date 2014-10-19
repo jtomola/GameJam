@@ -27,6 +27,8 @@ public class Goal : MonoBehaviour {
         GameObject obj = collision.gameObject;
         if (obj.CompareTag("SoulTag"))
         {
+            AudioSource source = GetComponent<AudioSource>();
+            source.Play();
             Object.Destroy(obj, 0.0f);
             Instantiate(explosion, obj.transform.position, new Quaternion());
             //guiScore.score += 10;

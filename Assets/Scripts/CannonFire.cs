@@ -21,6 +21,8 @@ public class CannonFire : MonoBehaviour {
         GameObject collider = collision.gameObject;
         if (collider.CompareTag("Player"))
         {
+            AudioSource source = GetComponent<AudioSource>();
+            source.Play();
             Vector2 dirVector = collider.transform.position - this.transform.position;
             dirVector.Normalize();
             Vector2 force = dirVector * ejectionForce;

@@ -13,6 +13,9 @@ public class GameTimeUpdate : MonoBehaviour {
     public GUIText winMessage;
     public ScoreKeeper scoreKeeper;
 
+    public AudioSource turqWin;
+    public AudioSource purpWin;
+    public AudioSource tie;
 	// Use this for initialization
 	void Start () {
 
@@ -34,14 +37,18 @@ public class GameTimeUpdate : MonoBehaviour {
             if (scoreKeeper.purpleGoal.GetScore() > scoreKeeper.turqouiseGoal.GetScore())
             {
                 winMessage.text = "Purple Team Wins!!";
+                Debug.Log("Playing");
+                purpWin.Play();
             }
             else if (scoreKeeper.purpleGoal.GetScore() < scoreKeeper.turqouiseGoal.GetScore())
             {
-                winMessage.text = "Turqouise Team Wins!!";
+                winMessage.text = "Turquoise Team Wins!!";
+                turqWin.Play();
             }
             else
             {
                 winMessage.text = "Tie Game!!";
+                tie.Play();
             }
 
             winMessage.enabled = true;
