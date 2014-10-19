@@ -7,7 +7,7 @@ public class Goal : MonoBehaviour {
     public GameObject BotClamp;
     public bool Active;
     public float Speed;
-    private int direction;
+    public int direction;
     
    // void OnTriggerStay2D(Collider2D collision)
    // {
@@ -40,7 +40,6 @@ public class Goal : MonoBehaviour {
     
 	// Use this for initialization
 	void Start () {
-        direction = 1;
 
 	}
 	
