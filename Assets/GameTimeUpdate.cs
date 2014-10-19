@@ -48,7 +48,14 @@ public class GameTimeUpdate : MonoBehaviour {
 
             scoreKeeper.purpleGoal.gameObject.SetActive(false);
             scoreKeeper.turqouiseGoal.gameObject.SetActive(false);
+
+            Invoke("EndGame", 8.0f);
         }
 	
 	}
+
+    void EndGame()
+    {
+        Application.LoadLevel("JoshScene");
+    }
 }
