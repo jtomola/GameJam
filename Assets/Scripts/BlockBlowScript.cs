@@ -7,12 +7,15 @@ public class BlockBlowScript : MonoBehaviour {
     public GameObject blowerBot;
     public GameObject blowerRight;
     public GameObject blowerLeft;
-    public float shootDelay;
-    public float shutdownDelay;
+    private float shootDelay;
+    private float shutdownDelay;
     private int count;
 	// Use this for initialization
 	void Start () {
+
+        shootDelay = Random.Range(5.0f, 12.0f);
         Invoke("ShootShit", shootDelay);
+        shutdownDelay = 0.5f;
         ShutDownShit();
         count = Random.Range(0, 10);
 	}
@@ -27,6 +30,7 @@ public class BlockBlowScript : MonoBehaviour {
     private void ShootShit()
     {
         int randomSide = count % 2;
+        shootDelay = Random.Range(5.0f, 12.0f);
         if (randomSide == 0)
         {
             blowerTop.SetActive(true);
