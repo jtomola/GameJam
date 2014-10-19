@@ -10,6 +10,7 @@ public class WinTextScript : MonoBehaviour {
     public float height;
     private GUIStyle style;
     public int fontSize;
+    private string locStr;
 
 	// Use this for initialization
 	void Start () {
@@ -18,6 +19,11 @@ public class WinTextScript : MonoBehaviour {
         style = new GUIStyle();
         style.fontSize = fontSize;
 	}
+
+    public void SetString(string stringIn)
+    {
+        this.str = stringIn;
+    }
 
     void Toggle()
     {
