@@ -3,14 +3,23 @@ using System.Collections;
 
 public class Goal : MonoBehaviour {
 
+    //public GameObject Score;
+    //private GUIScore guiScore;
+    public bool Active;
+
+    // Movement
     public GameObject TopClamp;
     public GameObject BotClamp;
-    public GameObject Score;
-    public GameObject explosion;
-    private GUIScore guiScore;
-    public bool Active;
     public float Speed;
     public float direction;
+
+    // Collision
+    public GameObject explosion;
+
+
+    // Score
+    public string TeamName;
+    private int Score = 0;
     
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -20,7 +29,8 @@ public class Goal : MonoBehaviour {
         {
             Object.Destroy(obj, 0.0f);
             Instantiate(explosion, obj.transform.position, new Quaternion());
-            guiScore.score += 10;
+            //guiScore.score += 10;
+            Score += 10;
             return;
         }
         
@@ -28,7 +38,8 @@ public class Goal : MonoBehaviour {
     
 	// Use this for initialization
 	void Start () {
-        this.guiScore = Score.GetComponent<GUIScore>();
+
+        Score = 0;
 
 	}
 	
@@ -54,4 +65,14 @@ public class Goal : MonoBehaviour {
         }
         
 	}
+
+    public int GetScore()
+    {
+        return this.Score;
+    }
+
+    public string GetTeam()
+    {
+        return this.TeamName;
+    }
 }
