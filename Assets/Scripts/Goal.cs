@@ -49,11 +49,12 @@ public class Goal : MonoBehaviour {
 
         if (Active)
         {
-            if ((transform.position.y + transform.localScale.y * .5f) >= TopClamp.transform.position.y)
+            BoxCollider2D bCollider = GetComponent<BoxCollider2D>();
+            if ((bCollider.bounds.max.y) >= TopClamp.transform.position.y)
             {
                 direction = -1.0f * Mathf.Abs(direction);
             }
-            if ((transform.position.y - transform.localScale.y * .5f) <= BotClamp.transform.position.y)
+            if ((bCollider.bounds.min.y) <= BotClamp.transform.position.y)
             {
                 direction = Mathf.Abs(direction);
             }
