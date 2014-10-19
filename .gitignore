@@ -1,6 +1,7 @@
 Library/
 Temp/
 obj/
+Builds/
 *.suo
 *.csproj
 *.sln

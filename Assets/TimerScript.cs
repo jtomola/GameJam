@@ -32,19 +32,19 @@ public class TimerScript : MonoBehaviour {
             GUIScore leftScoreScript = leftScore.GetComponent<GUIScore>();
             GUIScore rightScoreScript = rightScore.GetComponent<GUIScore>();
 
-            GameObject wintext = (GameObject)Instantiate(winText, Vector3.zero, Quaternion.identity);
-            WinTextScript winScript = winText.GetComponent<WinTextScript>();
+            GameObject wintext2 = (GameObject)Instantiate(winText, Vector3.zero, Quaternion.identity);
+            WinTextScript winScript = wintext2.GetComponent<WinTextScript>();
             if (leftScoreScript.score > rightScoreScript.score)
             {
-                winScript.str = "LEFT TEAM WINS!";
+                winScript.SetString("LEFT TEAM WINS!");
             }
             else if (leftScoreScript.score < rightScoreScript.score)
             {
-                winScript.str = "RIGHT TEAM WINS!";
+                winScript.SetString("RIGHT TEAM WINS!");
             }
             else
             {
-                winScript.str = "TIE!!!!";
+                winScript.SetString("TIE!!!");
             }
 
             GameObject.Destroy(leftScore);

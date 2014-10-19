@@ -8,13 +8,26 @@ public class CannonFire : MonoBehaviour {
     public float fireRateOffset = 0.0f;
     public float fireRate = 1.0f;
     float timer;
+    public float ejectionForce;
 
 	// Use this for initialization
 	void Start () {
 
         timer = Time.time + fireRate + fireRateOffset;
 	}
-	
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        GameObject collider = collision.gameObject;
+        if (collider.CompareTag("Player"))
+        {
+            Vector2 dirVector = collider.transform.position - this.transform.position;
+            dirVector.Normalize();
+            Vector2 force = dirVector * ejectionForce;
+            collider.rigidbody2D.AddForce(force, ForceMode2D.Impulse);
+        }
+
+    }
 	// Update is called once per frame
 	void Update () {
 
