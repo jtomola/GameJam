@@ -18,7 +18,7 @@ public class World : MonoBehaviour {
         }
         if (Input.GetButtonDown("Escape"))
         {
-            Application.Quit();
+            Application.LoadLevel("StartScene");
         }
 	
 	}
