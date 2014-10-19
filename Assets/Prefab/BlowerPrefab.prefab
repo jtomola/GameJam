@@ -111,6 +111,7 @@ MonoBehaviour:
   currMeter: 100
   delayActive: 0
   disabled: 0
+  playerInput: 1
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
