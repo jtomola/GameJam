@@ -1,10 +1,6 @@
 Library/
 Temp/
 obj/
-<<<<<<< HEAD
-*.suo
-=======
 *.suo
 *.csproj
 *.sln
->>>>>>> Develop
