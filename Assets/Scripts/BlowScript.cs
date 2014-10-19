@@ -3,6 +3,7 @@ using System.Collections;
 
 public class BlowScript : MonoBehaviour {
     public float maxForce;
+    public float maxForcePlayer;
     public int playerNumber;
     private string inputString;
     private bool isFiring;
@@ -13,7 +14,10 @@ public class BlowScript : MonoBehaviour {
     public float currMeter = 100.0f;
     private bool isRegen = false;
     private SpriteRenderer sprite;
-    
+    public float delayActive;
+    public bool disabled;
+    public bool playerInput;
+
 
     void OnTriggerStay2D(Collider2D collider)
     {
@@ -27,44 +31,45 @@ public class BlowScript : MonoBehaviour {
             Vector2 force = diffPos * this.maxForce;
             obj.rigidbody2D.AddForce(force, ForceMode2D.Impulse);
         }
-    }
-
-    /*
-    void OnTriggerEnter2D(Collider2D collider)
-    {
-        GameObject obj = collider.gameObject;
-
-        if (obj.CompareTag("SoulTag") == true)
+        if (obj.CompareTag("Player") == true && this.isFiring)
         {
             Vector2 diffPos = obj.transform.position - this.transform.position;
             diffPos.Normalize();
-            Vector2 force = diffPos * this.maxForce;
+            Vector2 force = diffPos * this.maxForcePlayer;
             obj.rigidbody2D.AddForce(force, ForceMode2D.Impulse);
         }
     }
-    */
 
 	// Use this for initialization
 	void Start () {
-        switch (playerNumber)
+
+        if (playerInput)
         {
-            case 1:
-                inputString = "Fire1";
-                break;
-            case 2:
-                inputString = "Fire2";
-                break;
-            case 3:
-                inputString = "Fire3";
-                break;
-            case 4:
-                inputString = "Fire4";
-                break;
-            default:
-                inputString = "Fire1";
-                break;
+            switch (playerNumber)
+            {
+                case 1:
+                    inputString = "Fire1";
+                    break;
+                case 2:
+                    inputString = "Fire2";
+                    break;
+                case 3:
+                    inputString = "Fire3";
+                    break;
+                case 4:
+                    inputString = "Fire4";
+                    break;
+                default:
+                    inputString = "Fire1";
+                    break;
+            }
+            this.isFiring = false;
         }
-        this.isFiring = false;
+        else
+        {
+            this.isFiring = true;
+        }
+        
         this.isRegen = true;
         this.currMeter = this.maxMeter;
 
@@ -77,9 +82,27 @@ public class BlowScript : MonoBehaviour {
         this.currMeter = 1.0f * this.maxMeter;
         this.isRegen = true;
     }
+
+    public void Activate()
+    {
+        this.disabled = false;
+    }
+
+    public void Disable()
+    {
+        this.disabled = true;
+       this.isFiring = false;
+       this.sprite.enabled = false;
+       Invoke("Activate", delayActive);
+    }
 	
 	// Update is called once per frame
 	void Update () {
+        if (this.disabled || !playerInput)
+        {
+            return;
+        }
+
         float strength = Input.GetAxis(inputString);
         if (Mathf.Abs(strength) > 0.1f && this.isRegen)
         {
