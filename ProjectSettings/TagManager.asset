@@ -4,6 +4,8 @@
 TagManager:
   tags:
   - SoulTag
+  - TopWall
+  - BotWall
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX
