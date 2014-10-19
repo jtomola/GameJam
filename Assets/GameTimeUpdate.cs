@@ -56,6 +56,6 @@ public class GameTimeUpdate : MonoBehaviour {
 
     void EndGame()
     {
-        Application.LoadLevel("JoshScene");
+        Application.LoadLevel("MainScene");
     }
 }
