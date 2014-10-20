@@ -15,13 +15,11 @@ public class BlockBlowScript : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Block Collision Enter");
         GameObject collider = collision.gameObject;
         if (collider.CompareTag("Player"))
         {
             AudioSource source = GetComponent<AudioSource>();
             source.Play();
-            Debug.Log("Inside collider if");
             Vector2 dirVector = collider.transform.position - this.transform.position;
             dirVector.Normalize();
             Vector2 force = dirVector * ejectionForce;
